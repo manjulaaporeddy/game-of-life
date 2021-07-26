@@ -8,5 +8,6 @@ node('UBUNTU') {
     stage('postbuild') {
        archive '**/*.war'
        junit '**/TEST-*.xml'
+       mail bcc: '', body: 'em chettannav ra', cc: '', from: '', replyTo: '', subject: 'build fail', to: 'vivekreddysandhi@gmail.com'
     }
 }
