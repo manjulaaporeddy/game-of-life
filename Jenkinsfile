@@ -16,10 +16,10 @@ pipeline {
         stage('build'){
             steps {
                 sh 'mvn package'
-                }
                 input 'continue to next stage?'
-            }
-    }    
+                }   
+            } 
+        }    
     post {
       success {
          archive '**/*.war'
@@ -27,6 +27,6 @@ pipeline {
     }
         failure {
           echo 'build fail'
-       }
+        }
     }
 }
