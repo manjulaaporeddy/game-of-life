@@ -2,7 +2,7 @@ pipeline {
     agent {label 'UBUNTU'}
     triggers {
         cron('H * * * *')
-        pollSCM('* * * * *')
+        pollSCM('H * * * *')
     }
     parameters{
         string(name: 'BRANCH', defaultValue: 'master', description: 'branch to build')
