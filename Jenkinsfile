@@ -4,6 +4,9 @@ pipeline {
         cron('H * * * *')
         pollSCM('* * * * *')
     }
+    parameters{
+        string(name: 'BRANCH', defaultvalue: 'master', description: 'branch to build')
+    }
     stages {
         stage('SCM'){
             steps {
@@ -14,6 +17,7 @@ pipeline {
             steps {
                 sh 'mvn package'
                 }
+                input 'continue to next stage?'
             }
     }    
     post {
