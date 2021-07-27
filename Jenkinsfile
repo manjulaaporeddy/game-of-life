@@ -1,6 +1,7 @@
 pipeline {
     agent {label 'UBUNTU'}
-    trigger {
+    triggers {
+        cron('H * * * *')
         pollSCM('* * * * *')
     }
     stages {
