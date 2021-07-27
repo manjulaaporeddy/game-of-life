@@ -6,8 +6,7 @@ pipeline {
     }
     parameters{
         string(name: 'BRANCH', defaultValue: 'master', description: 'branch to build')
-        choice(name: 'MAVEN_GOAL', choices: ['package', 'compile', 'clean'], description: 'this is to build the project')
-    }
+            }
     stages {
         stage('SCM'){
             steps {
@@ -16,7 +15,7 @@ pipeline {
         }
         stage('build'){
             steps {
-                sh mvn "${params.MAVEN_GOAL}"
+                sh 'mvn package'
                 }   
             } 
         }    
