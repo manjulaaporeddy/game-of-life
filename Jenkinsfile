@@ -6,17 +6,17 @@ pipeline {
     }
     parameters{
         string(name: 'BRANCH', defaultValue: 'master', description: 'branch to build')
-        choice(name: 'MAVEN_GOAL', defaultValue: 'package', description: 'this is to build project')
+        choice(name: 'MAVEN_GOAL', choices: ['package', 'compile', 'clean'], description: 'this is to build the project')
     }
     stages {
         stage('SCM'){
             steps {
-                git branch: 'master', url: 'https://github.com/manjulaaporeddy/game-of-life.git'
+                git branch: "${params.BRANCH}", url: 'https://github.com/manjulaaporeddy/game-of-life.git'
             }
         }
         stage('build'){
             steps {
-                sh 'mvn package'
+                sh "${params.MAVEN_GOAL}"
                 }   
             } 
         }    
