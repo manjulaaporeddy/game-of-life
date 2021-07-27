@@ -16,7 +16,6 @@ pipeline {
         stage('build'){
             steps {
                 sh 'mvn package'
-                input 'continue to next stage?'
                 }   
             } 
         }    
