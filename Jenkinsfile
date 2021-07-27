@@ -1,5 +1,9 @@
 pipeline {
     agent {label 'UBUNTU'}
+    trigger {
+        cron('H * * * *')
+        pollSCM('* * * * *')
+    }
     stages {
         stage('SCM'){
             steps {
@@ -8,7 +12,7 @@ pipeline {
         }
         stage('build'){
             steps {
-                sh 'mvn pakage'
+                sh 'mvn package'
                 }
             }
     }    
