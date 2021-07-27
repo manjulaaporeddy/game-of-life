@@ -5,7 +5,7 @@ pipeline {
         pollSCM('* * * * *')
     }
     parameters{
-        string(name: 'BRANCH', defaultvalue: 'master', description: 'branch to build')
+        string(name: 'BRANCH', defaultValue: 'master', description: 'branch to build')
     }
     stages {
         stage('SCM'){
