@@ -13,17 +13,20 @@ pipeline {
     stages {
         stage('SCM'){
             environment {
-                USER = 'MANJULA'
+                USER1 = 'MANJULA'
             }
             steps {
                 git branch: "${params.BRANCH}", url: 'https://github.com/manjulaaporeddy/game-of-life.git'
+                echo env.$GIT_URL
+                echo env.$WORKSPACE
                 echo env.DEVOPS
             }
         }
         stage('build'){
             steps {
-                echo env.USER
+                echo env.USER1
                 sh "mvn ${params.GOAL}"
+                echo env.$BUILD_URL
                 }   
             } 
         }    
