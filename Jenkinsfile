@@ -18,7 +18,6 @@ pipeline {
             steps {
                 git branch: "${params.BRANCH}", url: 'https://github.com/manjulaaporeddy/game-of-life.git'
                 echo env.$GIT_URL
-                echo env.$WORKSPACE
                 echo env.DEVOPS
             }
         }
