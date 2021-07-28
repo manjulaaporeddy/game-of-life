@@ -5,16 +5,24 @@ pipeline {
     }
     parameters{
         string(name: 'BRANCH', defaultValue: 'master', description: 'branch to build')
-        choice(name: 'GOAL', choices: ['package', 'compile', 'clean package'], description: 'build the project')
-            }
+        choice(name: 'GOAL', choices: ['package', 'compile', 'clean package'], description: 'maven goals')
+    }
+    environment {
+        DEVOPS = 'JENKINS'
+    }   
     stages {
         stage('SCM'){
+            environment {
+                USER = 'MANJULA'
+            }
             steps {
                 git branch: "${params.BRANCH}", url: 'https://github.com/manjulaaporeddy/game-of-life.git'
+                echo env.DEVOPS
             }
         }
         stage('build'){
             steps {
+                echo env.USER
                 sh "mvn ${params.GOAL}"
                 }   
             } 
