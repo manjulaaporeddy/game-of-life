@@ -4,8 +4,8 @@ pipeline {
         pollSCM('H * * * *')
     }
     parameters{
-        choice(name: 'GOAL', choices: ['package', 'compile', 'clean package'], description: 'build the project') 
         string(name: 'BRANCH', defaultValue: 'master', description: 'branch to build')
+        choice(name: 'GOAL', choices: ['package', 'compile', 'clean package'], description: 'build the project')
             }
     stages {
         stage('SCM'){
@@ -15,7 +15,7 @@ pipeline {
         }
         stage('build'){
             steps {
-                sh mvn "${params.GOAL}"
+                sh "mvn ${params.GOAL}"
                 }   
             } 
         }    
