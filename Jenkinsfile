@@ -35,9 +35,7 @@ pipeline {
       success {
          archive '**/*.war'
          junit '**/TEST-*.xml'
-    }
-        failure {
-          echo 'build fail'
         }
+        
     }
 }
