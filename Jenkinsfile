@@ -28,7 +28,8 @@ pipeline {
             steps {
                 unstash name: 'golwar'
             }
-        }                
+        } 
+    }               
                   
     post {
       success {
