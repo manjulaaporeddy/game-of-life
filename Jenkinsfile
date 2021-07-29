@@ -19,7 +19,7 @@ pipeline {
         stage('build'){
             steps {
                 sh "mvn ${params.GOAL}"
-                stash includes: '**/game-of-life.war', name: 'golwar'
+                stash includes: '**/gameoflife.war', name: 'golwar'
 
             }
         }
