@@ -12,24 +12,24 @@ pipeline {
     }   
     stages {
         stage('SCM'){
-            environment {
-                USERDEV = 'MANJULA'
-            }
             steps {
                 git branch: "${params.BRANCH}", url: 'https://github.com/manjulaaporeddy/game-of-life.git'
-                echo env.$GIT_URL
-                echo env.DEVOPS
-            }
+            }    
         }
         stage('build'){
             steps {
-                echo env.USERDEV
-                sh 'set'
                 sh "mvn ${params.GOAL}"
-                echo env.$BUILD_URL
-                }   
-            } 
-        }    
+                stash includes: '**/game-of-life.war', name: 'golwar'
+
+            }
+        }
+        stage('devserver') {
+            agent{label REDHAT}
+            steps {
+                unstash name: 'golwar'
+            }
+        }                
+                  
     post {
       success {
          archive '**/*.war'
