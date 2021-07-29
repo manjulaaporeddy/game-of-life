@@ -1,7 +1,7 @@
 pipeline {
     agent {label 'UBUNTU'}
     triggers {
-        pollSCM('H * * * *')
+        pollSCM('* * * * *')
     }
     parameters{
         string(name: 'BRANCH', defaultValue: 'master', description: 'branch to build')
@@ -16,7 +16,8 @@ pipeline {
                 USERDEV = 'MANJULA'
             }
             steps {
-                git branch: "${params.BRANCH}", url: 'https://github.com/manjulaaporeddy/game-of-life.git'
+                mail subject: 'BUILD Started '+env.BUILD_ID, to: 'devops@qt.com', from: 'jenkins@qt.com', body: 'EMPTY BODY'
+                git branch: "${params.BRANCH}", url: 'https://github.com/manjulaaporeddy/game-of-life.git'                
                 echo env.$GIT_URL
                 echo env.DEVOPS
             }
