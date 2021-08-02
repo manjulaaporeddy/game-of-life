@@ -23,10 +23,11 @@ pipeline {
 
             }
         }
-        stage('devserver') {
-            agent{label 'REDHAT'}
+        stage('deployment') {
+            agent{label 'ANSIBLE'}
             steps {
                 unstash name: 'golwar'
+                sh 'cd deployment && ansible-playbook -i hosts deploy.yaml'
             }
         } 
     }               
