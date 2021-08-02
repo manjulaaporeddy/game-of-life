@@ -19,15 +19,12 @@ pipeline {
         stage('build'){
             steps {
                 sh "mvn ${params.GOAL}"
-                stash includes: '**/gameoflife.war', name: 'golwar'
-
             }
         }
         stage('deployment') {
             agent{label 'ANSIBLE'}
             steps {
-                unstash name: 'golwar'
-                sh 'cd deployment && ansible-playbook -i hosts deploy.yaml'
+               sh 'cd deployment && ansible-playbook -i hosts deploy.yaml'
             }
         } 
     }               
