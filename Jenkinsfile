@@ -21,7 +21,7 @@ pipeline {
                 sh "mvn ${params.GOAL}"
             }
         }
-        stage('deployment') {
+        stage('ansible') {
             agent{label 'ANSIBLE'}
             steps {
                sh 'cd deployment && ansible-playbook -i hosts deploy.yaml'
