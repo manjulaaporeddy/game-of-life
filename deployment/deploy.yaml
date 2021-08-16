@@ -1,9 +1,10 @@
 ---
-- hosts: all
-  become: yes
-  tasks: 
-      - name: Update repositories cache and install "foo" package
-        apt:
-          name: foo
-          update_cache: yes
+-hosts: all
+ become: true
+ tasks:
+   -name: copy war file to tomcat
+   copy: 
+       src: /opt/playbooks/webapp.war
+       dest: /opt/tomcat/webapps
 
+  

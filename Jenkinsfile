@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'UBUNTU'}
+    agent {label 'ANSIBLE'}
     triggers {
         pollSCM('H * * * *')
     }
