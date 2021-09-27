@@ -1,7 +1,6 @@
 pipeline {
-    agent {label 'BUILD'}
     triggers {
-        pollSCM('* * * * *')
+    pollSCM('* * * * *')
     }
     parameters{
         string(name: 'BRANCH', defaultValue: 'master', description: 'branch to build')
