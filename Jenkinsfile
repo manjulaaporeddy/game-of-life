@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'MAVEN'}
+    agent {label 'BUILD'}
     triggers {
         pollSCM('* * * * *')
     }
