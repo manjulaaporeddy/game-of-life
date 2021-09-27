@@ -1,7 +1,7 @@
 pipeline {
-    agent {label 'ANSIBLE'}
+    agent {label 'MAVEN'}
     triggers {
-        pollSCM('H * * * *')
+        pollSCM('* * * * *')
     }
     parameters{
         string(name: 'BRANCH', defaultValue: 'master', description: 'branch to build')
@@ -19,8 +19,8 @@ pipeline {
         stage('build'){
             steps {
                 sh "mvn ${params.GOAL}"
-            }
                 stash includes: '**/gameoflife.war', name: 'golwar'
+            }
         }
         stage('devserver'){
             agent { label 'ANSIBLE'}
