@@ -19,17 +19,16 @@ pipeline {
         stage('build'){
             steps {
                 sh "mvn ${params.GOAL}"
-                stash includes: '**/*.war'
-                    name: 'golwar'
+            }
+                stash includes: '**/gameoflife.war', name: 'golwar'
+        }
+        stage('devserver'){
+            agent { label 'ANSIBLE'}
+            steps {
+                unstash name: 'golwar'
+                sh 'ansible-playbook -i hosts deploy.yaml'
             }
         }
-        stage('ansible') {
-            agent{label 'ANSIBLE'}
-            steps {
-               unstash name: 'golwar'
-               sh 'cd opt/playbooks && ansible-playbook -i hosts deploy.yaml'
-            }
-        } 
     }               
                   
     post {
