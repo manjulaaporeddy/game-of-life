@@ -26,7 +26,7 @@ pipeline {
             agent { label 'ANSIBLE'}
             steps {
                 unstash name: 'golwar'
-                sh 'cd opt/playbooks ansible-playbook -i hosts deploy.yaml'
+                sh 'cd deployment ansible-playbook -i hosts deploy.yaml'
             }
         }
     }               
